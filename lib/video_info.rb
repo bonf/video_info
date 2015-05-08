@@ -22,6 +22,10 @@ class VideoInfo
   def_delegators :@provider, :available?
   def_delegators :@provider, :playlist_id, :videos
 
+  class << self
+    attr_accessor :providers_api_key
+  end
+
   def initialize(url, options = {})
     @provider = _select_provider(url, options)
   end
@@ -40,6 +44,7 @@ class VideoInfo
   def ==(other)
     url == other.url && video_id == other.video_id
   end
+
 
   private
 
